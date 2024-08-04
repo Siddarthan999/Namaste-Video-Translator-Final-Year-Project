@@ -60,11 +60,11 @@ function getTTSOptions(text) {
     data: {
       voice_obj: {
         id: 2045,
-        voice_id: 'hi-IN-Neural2-C',
+        voice_id: 'ta-IN-Standard-B',
         gender: 'Male',
-        language_code: 'hi-IN',
-        language_name: 'Hindi',
-        voice_name: 'Rahul',
+        language_code: 'ta-IN',
+        language_name: 'Tamil',
+        // voice_name: 'Rahul',
         status: 2,
         rank: 0,
         type: 'google_tts',
