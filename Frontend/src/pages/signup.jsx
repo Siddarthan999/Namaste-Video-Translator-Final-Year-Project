@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './signup.css';
+import '../Styles/signup.css';
 import { toast } from "react-hot-toast";
 
 function SignUp() {

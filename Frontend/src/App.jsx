@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/login';
 import SignUp from './pages/signup';
 import VideoUploaderComponent from './pages/VideoUploaderComponent';
-import './App.css';
+import './Styles/App.css';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './components/AuthContext';
+import Home from './pages/Home/';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path='/' element={<Navigate to="/login" />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='/home' element={<VideoUploaderComponent />} />
+          <Route path='/dashboard' element={<VideoUploaderComponent />} />
+          <Route path='/home' element={<Home/>} />
         </Routes>
       </Router>
       </AuthProvider>

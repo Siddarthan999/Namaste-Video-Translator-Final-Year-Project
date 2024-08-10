@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 import AuthContext from '../components/AuthContext';
-import './login.css';
+import '../Styles/login.css';
 
 function Login() {
     const { setAuthData } = useContext(AuthContext);
@@ -22,7 +22,7 @@ function Login() {
                 if (response.status === 200) {
                     toast.success('Logged in successfully');
                     setAuthData(response.data); // Store response data in context
-                    navigate('/home');
+                    navigate('/dashboard');
                 } else {
                     toast.error(`Unexpected status code: ${response.status}`);
                 }

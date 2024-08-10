@@ -1,15 +1,20 @@
 import React, { useState, useContext } from 'react';
+import {BrowserRouter as Router, Routes, Route, Link, Form} from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../components/AuthContext'; 
-import './VideoUploaderComponent.css';
+import '../Styles/VideoUploaderComponent.css';
+import Navbar from './Navbar';
 import languageCodesData from '../components/LanguageData';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../components/FireBase";
+import { v4 } from "uuid";
+import toast from 'react-hot-toast';
 
 const VideoUploaderComponent = () => {
   const [videoFile, setVideoFile] = useState(null);
   const [translatedVideoUrl, setTranslatedVideoUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-  
   const { authData } = useContext(AuthContext);
 
   const languageOptions = Object.keys(languageCodesData[0]).map((language) => (
@@ -44,24 +49,38 @@ const VideoUploaderComponent = () => {
     formData.append('language', JSON.stringify(selectedLanguage));
     formData.append('authData', JSON.stringify(authData));
 
-   axios.post('http://localhost:3500/upload', formData, { responseType: 'blob' })
-   .then(response => {
-      console.log('Response:', response);
-      const translatedVideoBlob = new Blob([response.data], { type: 'video/mp4' });
-      const translatedVideoUrl = URL.createObjectURL(translatedVideoBlob);
-      setTranslatedVideoUrl(translatedVideoUrl); // Set translated video URL
-  })
-  .catch(error => {
-    console.error('Error uploading video:', error);
-  })
-  .finally(() => {
-    setUploading(false);
-    document.getElementById("uploadBtn").disabled = false;
-    element.classList.remove("loader");
-  });
+    axios.post('http://localhost:3500/upload', formData, { responseType: 'blob' })
+      .then(response => {
+        console.log('Response:', response);
+        const translatedVideoBlob = new Blob([response.data], { type: 'video/mp4' });
+        const translatedVideoUrl = URL.createObjectURL(translatedVideoBlob);
+        setTranslatedVideoUrl(translatedVideoUrl); // Set translated video URL
+        
+        // Directly use translatedVideoBlob for uploading
+        const videoRef = ref(storage, `${authData.email}/${videoFile.name + v4()}`);
+        toast.success('Video has been Translated! Press Play to watch!');
+        return uploadBytes(videoRef, translatedVideoBlob);
+      })
+      .then(snapshot => {
+        return getDownloadURL(snapshot.ref);
+      })
+      .then(url => {
+        setVideoUrls((prev) => [...prev, url]);
+      })
+      .catch(error => {
+        console.error('Error uploading video:', error);
+      })
+      .finally(() => {
+        setUploading(false);
+        document.getElementById("uploadBtn").disabled = false;
+        var element = document.getElementById("processing");
+        element.classList.remove("loader");
+      });
   };
 
   return (
+    <React.Fragment>
+    {<Navbar/>}
     <div className="App">
       <div className="App-header">
         <h1>NAMASTE 🙏🏽 VIDEO TRANSLATOR</h1>
@@ -103,6 +122,7 @@ const VideoUploaderComponent = () => {
         </div>
       </div>
     </div>
+    </React.Fragment>
   );
 };
 
