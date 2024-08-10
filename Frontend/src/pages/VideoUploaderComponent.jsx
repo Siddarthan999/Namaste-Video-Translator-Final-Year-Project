@@ -6,12 +6,12 @@ import languageCodesData from '../components/LanguageData';
 
 const VideoUploaderComponent = () => {
   const [videoFile, setVideoFile] = useState(null);
+  const [translatedVideoUrl, setTranslatedVideoUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   
-  const { authData } = useContext(AuthContext); // Access authData from context
+  const { authData } = useContext(AuthContext);
 
-  // Generate options for the dropdown menu
   const languageOptions = Object.keys(languageCodesData[0]).map((language) => (
     <option key={language} value={language}>
       {languageCodesData[0][language].language_name}
@@ -21,6 +21,7 @@ const VideoUploaderComponent = () => {
   const handleVideoChange = (event) => {
     const file = event.target.files[0];
     setVideoFile(file);
+    setTranslatedVideoUrl(null); // Reset translated video URL when a new file is selected
   };
 
   const handleLanguageChange = (event) => {
@@ -29,10 +30,11 @@ const VideoUploaderComponent = () => {
   };
 
   const handleUpload = () => {
-    // if (!videoFile || !selectedLanguage || !authData) {
-    //   alert('Please select a video file, choose a language, and ensure you are logged in.');
-    //   return;
-    // }
+    if (!videoFile || !selectedLanguage || !authData) {
+      alert('Please select a video file, choose a language, and ensure you are logged in.');
+      return;
+    }
+
     document.getElementById("uploadBtn").disabled = true;
     var element = document.getElementById("processing");
     element.classList.add("loader");
@@ -40,35 +42,37 @@ const VideoUploaderComponent = () => {
     const formData = new FormData();
     formData.append('video', videoFile);
     formData.append('language', JSON.stringify(selectedLanguage));
-    formData.append('authData', JSON.stringify(authData)); // Add authData to formData
+    formData.append('authData', JSON.stringify(authData));
 
-    axios.post('http://localhost:3500/upload', formData)
-      .then(response => {
-        console.log('Response:', response.data);
-        // Handle response from server as needed
-      })
-      .catch(error => {
-        console.error('Error uploading video:', error);
-        // Handle error
-      })
-      .finally(() => {
-        setUploading(false);
-        document.getElementById("uploadBtn").disabled = false;
-      });
+   axios.post('http://localhost:3500/upload', formData, { responseType: 'blob' })
+   .then(response => {
+      console.log('Response:', response);
+      const translatedVideoBlob = new Blob([response.data], { type: 'video/mp4' });
+      const translatedVideoUrl = URL.createObjectURL(translatedVideoBlob);
+      setTranslatedVideoUrl(translatedVideoUrl); // Set translated video URL
+  })
+  .catch(error => {
+    console.error('Error uploading video:', error);
+  })
+  .finally(() => {
+    setUploading(false);
+    document.getElementById("uploadBtn").disabled = false;
+    element.classList.remove("loader");
+  });
   };
 
   return (
     <div className="App">
       <div className="App-header">
         <h1>NAMASTE 🙏🏽 VIDEO TRANSLATOR</h1>
-        {authData && <h2>Welcome, {authData.firstName}!</h2>} {/* Display firstName */}
+        {authData && <h2>Welcome, {authData.firstName}!</h2>}
         <div className="upload-container">
           <input 
             type="file" 
             accept="video/*" 
             onChange={handleVideoChange} 
           />
-          {videoFile && ( // Conditionally render dropdown
+          {videoFile && (
             <div className="language-selector">
               <label htmlFor="language-dropdown">Select Language To Translate</label>
               <select 
@@ -91,7 +95,11 @@ const VideoUploaderComponent = () => {
           <div id="processing"></div>
         </div>
         <div className="video-container">
-          {videoFile && <video controls src={URL.createObjectURL(videoFile)} />}
+          {translatedVideoUrl ? (
+            <video controls src={translatedVideoUrl} />
+          ) : (
+            videoFile && <video controls src={URL.createObjectURL(videoFile)} />
+          )}
         </div>
       </div>
     </div>
