@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import {BrowserRouter as Router, Routes, Route, Link, Form} from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../components/AuthContext'; 
 import '../Styles/VideoUploaderComponent.css';
@@ -41,8 +40,8 @@ const VideoUploaderComponent = () => {
     }
 
     document.getElementById("uploadBtn").disabled = true;
-    var element = document.getElementById("processing");
-    element.classList.add("loader");
+    const processingElement = document.getElementById("processing");
+    processingElement.classList.add("loader");
 
     const formData = new FormData();
     formData.append('video', videoFile);
@@ -65,7 +64,7 @@ const VideoUploaderComponent = () => {
         return getDownloadURL(snapshot.ref);
       })
       .then(url => {
-        setVideoUrls((prev) => [...prev, url]);
+        setTranslatedVideoUrl(url);
       })
       .catch(error => {
         console.error('Error uploading video:', error);
@@ -73,55 +72,54 @@ const VideoUploaderComponent = () => {
       .finally(() => {
         setUploading(false);
         document.getElementById("uploadBtn").disabled = false;
-        var element = document.getElementById("processing");
-        element.classList.remove("loader");
+        processingElement.classList.remove("loader");
       });
   };
 
   return (
     <React.Fragment>
-    {<Navbar/>}
-    <div className="App">
-      <div className="App-header">
-        <h1>NAMASTE 🙏🏽 VIDEO TRANSLATOR</h1>
-        {authData && <h2>Welcome, {authData.firstName}!</h2>}
-        <div className="upload-container">
-          <input 
-            type="file" 
-            accept="video/*" 
-            onChange={handleVideoChange} 
-          />
-          {videoFile && (
-            <div className="language-selector">
-              <label htmlFor="language-dropdown">Select Language To Translate</label>
-              <select 
-                id="language-dropdown" 
-                onChange={handleLanguageChange} 
-                value={selectedLanguage ? selectedLanguage.language_name : ""}
-              >
-                <option value="">-- Select --</option>
-                {languageOptions}
-              </select>
-            </div>
-          )}
-          <button 
-            onClick={handleUpload} 
-            id="uploadBtn" 
-            disabled={!videoFile || !selectedLanguage || uploading}
-          >
-            Upload
-          </button>
-          <div id="processing"></div>
-        </div>
-        <div className="video-container">
-          {translatedVideoUrl ? (
-            <video controls src={translatedVideoUrl} />
-          ) : (
-            videoFile && <video controls src={URL.createObjectURL(videoFile)} />
-          )}
+      <Navbar/>
+      <div className="App">
+        <div className="App-header">
+          <h1>NAMASTE 🙏🏽 VIDEO TRANSLATOR</h1>    
+          <div className="upload-container">
+            <input 
+              type="file" 
+              accept="video/*" 
+              onChange={handleVideoChange} 
+            />
+            {videoFile && (
+              <div className="language-selector">
+                <label htmlFor="language-dropdown">Select Language To Translate</label>
+                <select 
+                  id="language-dropdown" 
+                  onChange={handleLanguageChange} 
+                  value={selectedLanguage ? selectedLanguage.language_name : ""}
+                >
+                  <option value="">-- Select --</option>
+                  {languageOptions}
+                </select>
+              </div>
+            )}
+            <button 
+              onClick={handleUpload} 
+              id="uploadBtn" 
+              className={selectedLanguage ? "upload-btn-active" : "upload-btn-inactive"}
+              disabled={!videoFile || !selectedLanguage || uploading}
+            >
+              Upload
+            </button>
+            <div id="processing"></div>
+          </div>
+          <div className="video-container">
+            {translatedVideoUrl ? (
+              <video controls src={translatedVideoUrl} />
+            ) : (
+              videoFile && <video controls src={URL.createObjectURL(videoFile)} />
+            )}
+          </div>
         </div>
       </div>
-    </div>
     </React.Fragment>
   );
 };

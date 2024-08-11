@@ -6,7 +6,7 @@ import VideoUploaderComponent from './pages/VideoUploaderComponent';
 import './Styles/App.css';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './components/AuthContext';
-import Home from './pages/Home/';
+import Home from './pages/home';
 
 function App() {
   return (
