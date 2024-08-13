@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import AuthContext from '../components/AuthContext'; 
 import '../Styles/VideoUploaderComponent.css';
@@ -8,6 +8,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../components/FireBase";
 import { v4 } from "uuid";
 import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 const VideoUploaderComponent = () => {
   const [videoFile, setVideoFile] = useState(null);
@@ -15,6 +16,18 @@ const VideoUploaderComponent = () => {
   const [uploading, setUploading] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const { authData } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!authData) {
+      const timer = setTimeout(() => {
+        toast.error("Authentication Failed. Login to Access.");
+        navigate('/login');
+      }, 0);
+
+      return () => clearTimeout(timer);
+    }
+  }, [authData, navigate]);
 
   const languageOptions = Object.keys(languageCodesData[0]).map((language) => (
     <option key={language} value={language}>
@@ -75,6 +88,9 @@ const VideoUploaderComponent = () => {
         processingElement.classList.remove("loader");
       });
   };
+
+  // If not authenticated, don't render the component
+  if (!authData) return null;
 
   return (
     <React.Fragment>
