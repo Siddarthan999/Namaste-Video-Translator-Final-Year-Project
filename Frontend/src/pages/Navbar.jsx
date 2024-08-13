@@ -11,7 +11,7 @@ export default function Navbar() {
         <h2 className='title-name'>Welcome Back, {authData.firstName + ' ' +authData.lastName}</h2>
         <Link to={'/dashboard'} className='link'>Dashboard</Link>
         <Link to={'/home'} className='link'>Home</Link>
-        <Link to={'/login'} className='link'>Log Out</Link>
+        <Link to={'/logout'} className='link'>Log Out</Link>
       </div>
     </React.Fragment>
   )

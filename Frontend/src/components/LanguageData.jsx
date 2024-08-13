@@ -27,4 +27,4 @@ const languageCodesData = [
     }
   ];
   
-  export default languageCodesData;  
+  export default languageCodesData;

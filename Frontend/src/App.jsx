@@ -7,6 +7,7 @@ import './Styles/App.css';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './components/AuthContext';
 import Home from './pages/home';
+import Logout from './pages/logout';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/dashboard' element={<VideoUploaderComponent />} />
           <Route path='/home' element={<Home/>} />
+          <Route path='/logout' element={<Logout/>} />
         </Routes>
       </Router>
       </AuthProvider>
