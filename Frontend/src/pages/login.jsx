@@ -16,7 +16,7 @@ function Login() {
         const emailValue = document.querySelector('.email-input').value;
         const passwordValue = document.querySelector('.password-input').value;
 
-        axios.get(`http://localhost:3500/login/${emailValue}/${passwordValue}`)
+        axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}/login/${emailValue}/${passwordValue}`)
             .then(response => {
                 console.log(response.data);
                 if (response.status === 200) {

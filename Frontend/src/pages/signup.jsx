@@ -19,7 +19,7 @@ function SignUp() {
             "password": `${document.querySelector('.new-password').value}`
         };
 
-        axios.post(`http://localhost:3500/signup/`, newUserData)
+        axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/signup/`, newUserData)
             .then(response => {
                 console.log(response.data);
                 if (response.data.message) {
