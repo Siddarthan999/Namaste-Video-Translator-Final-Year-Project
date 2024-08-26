@@ -19,11 +19,10 @@ function SignUp() {
             "password": `${document.querySelector('.new-password').value}`
         };
 
-        axios.post(`http://localhost:3500/signup/`, newUserData)
+        axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/signup/`, newUserData)
             .then(response => {
                 console.log(response.data);
                 if (response.data.message) {
-                    // alert('Registration Successfull');
                     toast.success('Registration Successfull');
                     navigate('/login');
                 } else {
@@ -45,9 +44,10 @@ function SignUp() {
 
     return (
         <React.Fragment>
+            <div className="new-container">
             <div className="signup-container">
                 <form onSubmit={registerNewUser} className="form-signup">
-                    <h2>Sign Up</h2>
+                    <h2 className="signup-title">Sign Up</h2>
                     First Name <input type="text" className="first-name" required /> <br />
                     Last Name <input type="text" className="last-name" required /> <br />
                     Phone no <input type="number" className="phone-no" required /> <br />
@@ -57,8 +57,8 @@ function SignUp() {
                     <Link to={'/'} className='link-2'>Already Registered? <span className="login">Login here</span></Link>
                 </form>
             </div>
+            </div>
         </React.Fragment>
     );
 }
-
 export default SignUp;

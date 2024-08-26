@@ -66,15 +66,20 @@ input[type="file"]::file-selector-button:active {
   position: relative;
 }
 
+.lang-title {
+  font-size: 18px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .language-selector select {
   border-radius: 8px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #ddd;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 

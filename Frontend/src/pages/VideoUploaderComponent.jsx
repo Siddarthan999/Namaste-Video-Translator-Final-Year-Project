@@ -61,7 +61,7 @@ const VideoUploaderComponent = () => {
     formData.append('language', JSON.stringify(selectedLanguage));
     formData.append('authData', JSON.stringify(authData));
 
-    axios.post('http://localhost:3500/upload', formData, { responseType: 'blob' })
+    axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/upload`, formData, { responseType: 'blob' })
       .then(response => {
         console.log('Response:', response);
         const translatedVideoBlob = new Blob([response.data], { type: 'video/mp4' });
@@ -106,7 +106,7 @@ const VideoUploaderComponent = () => {
             />
             {videoFile && (
               <div className="language-selector">
-                <label htmlFor="language-dropdown">Select Language To Translate</label>
+                <label htmlFor="language-dropdown" className='lang-title'>Select Language To Translate</label>
                 <select 
                   id="language-dropdown" 
                   onChange={handleLanguageChange} 

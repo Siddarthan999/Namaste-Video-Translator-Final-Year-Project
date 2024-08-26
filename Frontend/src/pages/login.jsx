@@ -7,21 +7,21 @@ import AuthContext from '../components/AuthContext';
 import '../Styles/login.css';
 
 function Login() {
+
     const { setAuthData } = useContext(AuthContext);
     const navigate = useNavigate();
 
     function authLogin(event) {
         event.preventDefault();
-
         const emailValue = document.querySelector('.email-input').value;
         const passwordValue = document.querySelector('.password-input').value;
 
-        axios.get(`http://localhost:3500/login/${emailValue}/${passwordValue}`)
+        axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}/login/${emailValue}/${passwordValue}`)
             .then(response => {
                 console.log(response.data);
                 if (response.status === 200) {
                     toast.success('Logged in successfully');
-                    setAuthData(response.data); // Store response data in context
+                    setAuthData(response.data);
                     navigate('/dashboard');
                 } else {
                     toast.error(`Unexpected status code: ${response.status}`);
@@ -41,16 +41,19 @@ function Login() {
     }
 
     return (
-        <div className="login-container">
-            <form onSubmit={authLogin} className="form-login">
-                <h2>Login</h2>
-                Email<input type="email" className="email-input" /> <br />
-                Password<input type="password" className="password-input" /> <br />
-                <button type="submit" className="login-button">Submit</button> <br />
-                <Link to={'/signup'} className='link-1'>New User? <span className="signup">Sign Up here</span></Link>
-            </form>
+        <React.Fragment>
+        <div className="new-container">
+            <div className="login-container">
+                <form onSubmit={authLogin} className="form-login">
+                    <h2 className="login-title">Login</h2>
+                    Email<input type="email" className="email-input" /> <br />
+                    Password<input type="password" className="password-input" /> <br />
+                    <button type="submit" className="login-button">Submit</button> <br />
+                    <Link to={'/signup'} className='link-1'>New User? <span className="signup">Sign Up here</span></Link>
+                </form>
+            </div>
         </div>
+        </React.Fragment>
     )
 }
-
 export default Login;

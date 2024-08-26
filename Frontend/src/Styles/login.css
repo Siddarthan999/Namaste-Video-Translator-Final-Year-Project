@@ -1,66 +1,48 @@
-/* .login-container{
+.new-container {
+    height: 100vh;
     display: flex;
-    border: solid rgb(234, 217, 217) 2px;
-    box-shadow: rgba(211, 194, 194, 0.24) 0px 3px 8px;
-    border-radius: 15px;
-    padding: 12px;
-    margin: 8px;
-    width: 12em;
-    height: 15em;
-    gap: 20px;
-    background-color: lightblue;
-} */
-
+    justify-content: center;
+    align-items: center;
+}
 .form-login {
-    background-color: rgb(186, 202, 239);
+    background-color: rgb(27, 24, 24);
+    color: white;
     padding: 2rem;
     margin: 2rem auto;
     border-radius: 5px;
     max-width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    box-shadow: violet 0px 0.0625em 0.0625em, violet 0px 0.125em 0.5em, violet 0px 0px 0px 1px inset;
 }
-
 form input {
     width: 100%;
     padding: 5px;
     margin-bottom: -5px;
+    margin-top: 3px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
-form button {
-    width: 70%;
-    padding: 0.4rem;
-    background-color: black;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin: 10px;
-    align-self: center;
-}
-
-/* .login-button {
+.login-button {
     border-radius: 5px;
-    padding: 4px 20px 4px 20px;
-    margin: 20px;
-    background-color: white;
-    color: black;
-} */
-
+    padding: 6.5px 20px 6.5px 20px;
+    margin: 15px;
+    background-color: rgb(157, 72, 232);
+}
 .link-1 {
-    font-size: 1em;
+    font-size: 0.92em;
     padding-left: 8em;
     display: flex;
     gap: 5px;
-    
+    color: white;
+    text-decoration: none;
 }
-
 .signup {
-    color: blue;
+    color: rgb(52, 211, 52);
     text-decoration: underline;
+}
+.login-title {
+    color: rgb(200, 145, 248);
 }

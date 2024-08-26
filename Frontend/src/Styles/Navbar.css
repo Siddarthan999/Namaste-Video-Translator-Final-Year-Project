@@ -1,3 +1,4 @@
+/* Original Styles (Desktop) */
 .title-name {
   font-size: 24px;
   font-weight: 600;
@@ -9,6 +10,11 @@
   background-clip: text;
   -webkit-background-clip: text;
   animation: wave 3s linear infinite, gradientShift 6s ease infinite;
+}
+
+img {
+  max-width: 50px;
+  height: 50px;
 }
 
 @keyframes wave {
@@ -29,14 +35,13 @@
   }
 }
 
-
-
 .header {
   background-color: #333;
   padding: 10px 20px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative; /* For positioning the hamburger icon */
 }
 
 .link {
@@ -53,12 +58,27 @@
   border-radius: 5px;
 }
 
+.hamburger {
+  display: none; /* Hide by default */
+  font-size: 30px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto; /* Push the icon to the right */
+}
+
+.nav-links {
+  display: flex; /* Default desktop behavior */
+  gap: 10px;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
   }
-  
+
   .title-name {
     font-size: 20px;
     margin-bottom: 10px;
@@ -68,5 +88,19 @@
   .link {
     padding: 8px 12px;
     font-size: 14px;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger icon on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Hide links initially on mobile */
+    flex-direction: column;
+    width: 100%; /* Take full width on mobile */
+  }
+
+  .nav-links.show {
+    display: flex; /* Show links when hamburger is clicked */
   }
 }
