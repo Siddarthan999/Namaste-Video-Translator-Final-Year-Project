@@ -21,10 +21,12 @@ This project aims to create a sophisticated Full Stack web application that auto
 * IDE: Use of VSCode as the Integrated Development Environment for coding, debugging, and version control integration.
 
 ## System Architecture
-
-
+![image](https://github.com/user-attachments/assets/7b7a800e-6aea-4af6-a98e-ee968f27a241)
 
 ## Output
+![image](https://github.com/user-attachments/assets/4d28544d-9019-432a-baf5-e18a22a379f5)
+![image](https://github.com/user-attachments/assets/0bbac801-cdab-44c7-9c72-86eaa78e66a1)
+![image](https://github.com/user-attachments/assets/43d2dcf9-e665-4447-9eb8-a0811f4a6f18)
 
 
 ## Results and Impact
