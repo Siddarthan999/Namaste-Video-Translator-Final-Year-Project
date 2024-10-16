@@ -24,7 +24,6 @@ export default function Navbar() {
         </button>
 
         <nav className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
-          <Link to={'/dashboard'} className='link'>Dashboard</Link>
           <Link to={'/home'} className='link'>Home</Link>
           <Link to={'/logout'} className='link'>Log Out</Link>
         </nav>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../components/FireBase";
 import AuthContext from '../components/AuthContext';
-import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import '../Styles/Home.css';
@@ -36,15 +35,6 @@ function Home() {
 
     return (
         <React.Fragment>
-            <Navbar />
-            <div className="Home">
-                <h2 className="title">TRANSLATED VIDEOS</h2>
-                {videoUrls.map((url, index) => (
-                    <div key={index} className="video-container">
-                        <video controls src={url} alt={`Uploaded video ${index}`} />
-                    </div>
-                ))}
-            </div>
         </React.Fragment>
     );
 }
