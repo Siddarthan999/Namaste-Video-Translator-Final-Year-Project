@@ -1,0 +1,161 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.upload-container {
+  margin-bottom: 20px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* File Upload Button */
+input[type="file"] {
+  position: relative;
+  display: inline-block;
+}
+
+input[type="file"]::file-selector-button {
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly larger button on hover */
+}
+
+input[type="file"]::file-selector-button:active {
+  background-color: #388e3c; /* Even darker green on active */
+  transform: scale(1); /* Reset size */
+}
+
+/* Dropdown Style */
+.language-selector {
+  margin: 10px 0;
+  position: relative;
+}
+
+.lang-title {
+  font-size: 18px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.language-selector select {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 200px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.language-selector select:focus {
+  border-color: #4CAF50; /* Green border on focus */
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* Green shadow on focus */
+  outline: none;
+}
+
+/* Upload Button Style */
+.upload-btn-active {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.upload-btn-active:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.upload-btn-active:active {
+  background-color: #388e3c;
+  transform: scale(1);
+}
+
+.upload-btn-inactive {
+  background-color: #ddd;
+  color: #555;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+  opacity: 0.6; /* Less opaque when inactive */
+}
+
+.upload-btn-inactive:hover {
+  background-color: #ccc;
+  transform: scale(1.05);
+}
+
+.upload-btn-inactive:active {
+  background-color: #bbb;
+  transform: scale(1);
+}
+
+/* Processing Loader */
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 20px;
+  color: #333;
+  background: radial-gradient(circle closest-side,#fff 94%,#0000) right/calc(200% - 1em) 100%;
+  animation: l24 1s infinite alternate linear;
+}
+
+.loader::before {
+  content: "Processing...";
+  line-height: 1em;
+  color: #0000;
+  background: inherit;
+  background-image: radial-gradient(circle closest-side,#000 94%,#fff);
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+@keyframes l24 {
+  100% { background-position: left; }
+}

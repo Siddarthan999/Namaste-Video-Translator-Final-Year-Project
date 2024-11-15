@@ -1,0 +1,106 @@
+/* Original Styles (Desktop) */
+.title-name {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 0 15px;
+  margin-right: auto;
+  background: linear-gradient(90deg, #9c5cf5, #64ea81, #d56cc4);
+  background-size: 200% 200%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: wave 3s linear infinite, gradientShift 6s ease infinite;
+}
+
+img {
+  max-width: 50px;
+  height: 50px;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.header {
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative; /* For positioning the hamburger icon */
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #ff9800;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.hamburger {
+  display: none; /* Hide by default */
+  font-size: 30px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto; /* Push the icon to the right */
+}
+
+.nav-links {
+  display: flex; /* Default desktop behavior */
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .link {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger icon on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Hide links initially on mobile */
+    flex-direction: column;
+    width: 100%; /* Take full width on mobile */
+  }
+
+  .nav-links.show {
+    display: flex; /* Show links when hamburger is clicked */
+  }
+}

@@ -1,0 +1,18 @@
+version: '3'
+services:  
+  backend:    
+    build:      
+      context: .      
+      dockerfile: Dockerfile    
+    volumes:      
+      - backend_data:/app/uploads
+      - text_files_data:/app/text_files    
+    ports:      
+      - "5000:5000"    
+    environment:     
+     - NODE_ENV=production
+    env_file:
+      - .env
+volumes:  
+  backend_data:
+  text_files_data:

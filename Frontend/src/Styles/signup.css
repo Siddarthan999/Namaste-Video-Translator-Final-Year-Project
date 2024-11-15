@@ -1,0 +1,47 @@
+.form-signup {
+    background-color: rgb(27, 24, 24);
+    color: white;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 5px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    box-shadow: violet 0px 0.0625em 0.0625em, violet 0px 0.125em 0.5em, violet 0px 0px 0px 1px inset;
+}
+form input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: -5.5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form button {
+    width: 70%;
+    padding: 0.4rem;
+    background-color: rgb(157, 72, 232);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px;
+    align-self: center;
+}
+.link-2 {
+    font-size: 0.9em;
+    padding-left: 5.5em;
+    display: flex;
+    gap: 5px;
+    color: white;
+    text-decoration: none;
+}
+.login {
+    color: rgb(52, 211, 52);
+    text-decoration: underline;
+}
+.signup-title {
+    color: rgb(200, 145, 248);
+}
