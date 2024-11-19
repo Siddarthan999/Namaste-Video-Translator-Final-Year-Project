@@ -27,7 +27,10 @@ This project aims to create a sophisticated Full Stack web application that auto
 ![image](https://github.com/user-attachments/assets/4d28544d-9019-432a-baf5-e18a22a379f5)
 ![image](https://github.com/user-attachments/assets/0bbac801-cdab-44c7-9c72-86eaa78e66a1)
 ![image](https://github.com/user-attachments/assets/43d2dcf9-e665-4447-9eb8-a0811f4a6f18)
-
+![Screenshot 2024-11-15 190131](https://github.com/user-attachments/assets/5b7d023f-41aa-4f99-8f39-f901488be44b)
+![Screenshot 2024-11-15 190648](https://github.com/user-attachments/assets/2cca5e0b-5fae-4eac-ab4e-1f0db6d66448)
+![Screenshot 2024-11-15 190718](https://github.com/user-attachments/assets/5ada8aed-cc46-4a18-b76d-21f6b5a59379)
+![Screenshot 2024-11-15 190627](https://github.com/user-attachments/assets/e4c80e75-ba60-4b47-bff2-4442d0404c0d)
 
 ## Results and Impact
 The video translation system addresses the growing need for accessible multimedia content across languages, making it essential for users to understand video in their native language as globalization connects diverse audiences. With features like user authentication, video management, audio extraction, speech-to-text conversion, and text translation, it provides a seamless experience. Leveraging advanced technologies, the system ensures high-quality translations that accurately convey the original message, all through a user-friendly interface that simplifies uploads and file management while prioritizing data security. Serving educators, content creators, and businesses, this innovative solution bridges language gaps and promotes inclusivity in digital communication, adapting to user feedback and advancements to maintain its leadership in the field.
